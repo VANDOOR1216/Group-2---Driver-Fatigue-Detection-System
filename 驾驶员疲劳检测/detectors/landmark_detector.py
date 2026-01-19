@@ -6,6 +6,7 @@ import numpy as np
 import cv2
 import os
 import time
+from utils.path_utils import get_model_path
 
 
 class LandmarkDetector:
@@ -29,7 +30,7 @@ class LandmarkDetector:
             min_detection_confidence: 最小检测置信度
             min_tracking_confidence: 最小跟踪置信度 (Tasks API IMAGE 模式下可能不适用，但保留参数签名)
         """
-        model_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'models', 'face_landmarker.task')
+        model_path = get_model_path('face_landmarker.task')
         
         # 读取模型文件内容以避开路径包含中文/空格导致 MediaPipe 无法读取的问题
         with open(model_path, 'rb') as f:

@@ -5,6 +5,7 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 import numpy as np
 import os
+from utils.path_utils import get_model_path
 
 
 class FaceDetector:
@@ -17,7 +18,7 @@ class FaceDetector:
         Args:
             min_detection_confidence: 最小检测置信度 (0.0-1.0)
         """
-        model_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'models', 'blaze_face_short_range.tflite')
+        model_path = get_model_path('blaze_face_short_range.tflite')
         
         # 读取模型文件内容以避开路径包含中文/空格导致 MediaPipe 无法读取的问题
         with open(model_path, 'rb') as f:
