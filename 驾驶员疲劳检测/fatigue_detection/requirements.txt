@@ -4,7 +4,14 @@
 opencv-python>=4.5.0
 mediapipe>=0.10.0
 numpy>=1.19.0
+<<<<<<< HEAD
 
+=======
+PyQt5>=5.15.0
+PyQt5-sip>=12.11.0
+pyqtgraph>=0.13.0
+qdarkstyle>=3.0.0
+>>>>>>> acba42d (feat: 添加驾驶员疲劳检测系统基础框架和核心功能)
 # 可选依赖（用于性能优化）
 opencv-contrib-python>=4.5.0  # OpenCV扩展模块
 

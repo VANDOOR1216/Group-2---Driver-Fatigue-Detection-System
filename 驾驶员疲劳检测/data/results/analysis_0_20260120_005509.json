@@ -1,0 +1,919 @@
+{
+  "video_path": "data\\uploads\\0.mp4",
+  "video_name": "0.mp4",
+  "final_fatigue_level": "重度疲劳",
+  "total_frames": 163,
+  "processed_frames": 163,
+  "frames_with_face": 163,
+  "frames_without_face": 0,
+  "normal_frames": 0,
+  "mild_fatigue_frames": 0,
+  "severe_fatigue_frames": 0,
+  "fatigue_percentage": 0.0,
+  "avg_ear": 0.1496869544119969,
+  "avg_mar": 0.005994738243090583,
+  "results": [
+    {
+      "frame": 1,
+      "ear": 0.16038675187943113,
+      "mar": 0.01385159534020392,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 2,
+      "ear": 0.1658430798708989,
+      "mar": 0.009104278094589576,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 3,
+      "ear": 0.16945634854306305,
+      "mar": 0.010665301510109929,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 4,
+      "ear": 0.16172953113296556,
+      "mar": 0.017467360650335235,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 5,
+      "ear": 0.16140809745264184,
+      "mar": 0.013332906580485736,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 6,
+      "ear": 0.16137594717988546,
+      "mar": 0.01676144339347319,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 7,
+      "ear": 0.16189544534753914,
+      "mar": 0.022573261791324382,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 8,
+      "ear": 0.16087842947514985,
+      "mar": 0.017256820343623448,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 9,
+      "ear": 0.15366405410938294,
+      "mar": 0.007998976132582446,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 10,
+      "ear": 0.14978100849882608,
+      "mar": 0.02161630605224847,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 11,
+      "ear": 0.17160964832318862,
+      "mar": 0.007935508250389604,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 12,
+      "ear": 0.17492674876880118,
+      "mar": 0.016624727241484935,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 13,
+      "ear": 0.17873633807043443,
+      "mar": 0.007936257932322352,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 14,
+      "ear": 0.1757137321818304,
+      "mar": 0.013227096553870587,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 15,
+      "ear": 0.17043938840556866,
+      "mar": 0.010546270954390034,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 16,
+      "ear": 0.18023686121375515,
+      "mar": 0.009177694935865024,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 17,
+      "ear": 0.1790280813081453,
+      "mar": 0.007936257932322352,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 18,
+      "ear": 0.17766135545486916,
+      "mar": 0.007998976132582446,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 19,
+      "ear": 0.16932269050626053,
+      "mar": 0.006437078888126411,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 20,
+      "ear": 0.18087556909848151,
+      "mar": 0.007998976132582446,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 21,
+      "ear": 0.14897918868441729,
+      "mar": 0.00524918106827246,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 22,
+      "ear": 0.13910223482835038,
+      "mar": 0.011031090301535157,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 23,
+      "ear": 0.15605542228908345,
+      "mar": 0.0077517050180726365,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 24,
+      "ear": 0.16453826725813075,
+      "mar": 0.007812261531302849,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 25,
+      "ear": 0.1537672457222131,
+      "mar": 0.012109738527892237,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 26,
+      "ear": 0.15447170970819174,
+      "mar": 0.005208174354201899,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 27,
+      "ear": 0.16031985886660516,
+      "mar": 0.01302043588550475,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 28,
+      "ear": 0.15716528085757614,
+      "mar": 0.005208174354201899,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 29,
+      "ear": 0.15941593768099338,
+      "mar": 0.005208333292643229,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 30,
+      "ear": 0.15299612128408974,
+      "mar": 0.01302043588550475,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 31,
+      "ear": 0.15081286386225107,
+      "mar": 0.013227096553870587,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 32,
+      "ear": 0.11586479354341189,
+      "mar": 0.01167781356439062,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 33,
+      "ear": 0.02536806789576073,
+      "mar": 0.019253434415075474,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 34,
+      "ear": 0.09117446314808916,
+      "mar": 0.02331368343569295,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 35,
+      "ear": 0.14364503646516175,
+      "mar": 0.010177820435713943,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 36,
+      "ear": 0.14706913786547282,
+      "mar": 0.008821992134739724,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 37,
+      "ear": 0.14574964632353832,
+      "mar": 0.008961190381862267,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 38,
+      "ear": 0.14780949296200005,
+      "mar": 0.007751937924403582,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 39,
+      "ear": 0.15575358616962143,
+      "mar": 0.005333333290666667,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 40,
+      "ear": 0.16582684646000287,
+      "mar": 0.0,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 41,
+      "ear": 0.16445758947410366,
+      "mar": 0.0025839016726908787,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 42,
+      "ear": 0.16644647816670122,
+      "mar": 0.0025445292426626263,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 43,
+      "ear": 0.17150920196968908,
+      "mar": 0.005012389611658786,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 44,
+      "ear": 0.17829034932871662,
+      "mar": 0.0061901080013749225,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 45,
+      "ear": 0.1728178625213067,
+      "mar": 0.0025444551089284857,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 46,
+      "ear": 0.16424514649912164,
+      "mar": 0.005050360088931262,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 47,
+      "ear": 0.17511480488779096,
+      "mar": 0.0,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 48,
+      "ear": 0.15807938009871142,
+      "mar": 0.0024330251924422884,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 49,
+      "ear": 0.16607947198092035,
+      "mar": 0.0024330251924422884,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 50,
+      "ear": 0.15058105919130402,
+      "mar": 0.0,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 51,
+      "ear": 0.15621643521499576,
+      "mar": 0.0023310023147016154,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 52,
+      "ear": 0.15440346561514592,
+      "mar": 0.004901828239566661,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 53,
+      "ear": 0.1505290987183871,
+      "mar": 0.0023474178238444754,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 54,
+      "ear": 0.16006837184673922,
+      "mar": 0.004694835647688951,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 55,
+      "ear": 0.14915478766258738,
+      "mar": 0.004629629597479424,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 56,
+      "ear": 0.15588505832831906,
+      "mar": 0.00892407248944982,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 57,
+      "ear": 0.1478757549574899,
+      "mar": 0.005588322533835345,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 58,
+      "ear": 0.16624811904959452,
+      "mar": 0.00801438704310206,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 59,
+      "ear": 0.14876072664906137,
+      "mar": 0.004629517968859558,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 60,
+      "ear": 0.15130979107734716,
+      "mar": 0.002330945321283634,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 61,
+      "ear": 0.15242808919941297,
+      "mar": 0.007041555077777363,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 62,
+      "ear": 0.15165573093169707,
+      "mar": 0.005707217094419463,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 63,
+      "ear": 0.14659374354375293,
+      "mar": 0.00566702742523107,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 64,
+      "ear": 0.14300439512993468,
+      "mar": 0.005626987085492871,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 65,
+      "ear": 0.14974817215231268,
+      "mar": 0.006686420741006707,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 66,
+      "ear": 0.14230390255932118,
+      "mar": 0.010915883098428534,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 67,
+      "ear": 0.15487819308549183,
+      "mar": 0.0023473596178709903,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 68,
+      "ear": 0.15439703763165039,
+      "mar": 0.005789480923272547,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 69,
+      "ear": 0.16221034470079956,
+      "mar": 0.0023980815175197972,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 70,
+      "ear": 0.16179973226957273,
+      "mar": 0.0,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 71,
+      "ear": 0.15720001949213774,
+      "mar": 0.009050655077054907,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 72,
+      "ear": 0.16462808604930995,
+      "mar": 0.008071223818335575,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 73,
+      "ear": 0.16648669742359404,
+      "mar": 0.00566702742523107,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 74,
+      "ear": 0.14542463305694026,
+      "mar": 0.008986695232591152,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 75,
+      "ear": 0.13887169056471282,
+      "mar": 0.008986918069918864,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 76,
+      "ear": 0.043903532831667556,
+      "mar": 0.009737161035498456,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 77,
+      "ear": 0.03575929937881134,
+      "mar": 0.014575551886250357,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 78,
+      "ear": 0.036324316384620844,
+      "mar": 0.011260233088112952,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 79,
+      "ear": 0.12853285238757242,
+      "mar": 0.0068963876740635865,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 80,
+      "ear": 0.13318113675211055,
+      "mar": 0.006686420741006707,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 81,
+      "ear": 0.12416234967057979,
+      "mar": 0.004566210014386689,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 82,
+      "ear": 0.15065591946745244,
+      "mar": 0.005588457281499359,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 83,
+      "ear": 0.13104669085361714,
+      "mar": 0.007848766755923666,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 84,
+      "ear": 0.1391182314236094,
+      "mar": 0.004504504474068663,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 85,
+      "ear": 0.1430612821877062,
+      "mar": 0.007689494608394392,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 86,
+      "ear": 0.14758277673672834,
+      "mar": 0.0064135185083817325,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 87,
+      "ear": 0.15454166732837898,
+      "mar": 0.004629517968859558,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 88,
+      "ear": 0.1476724903424142,
+      "mar": 0.00774180168273302,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 89,
+      "ear": 0.15542804665600093,
+      "mar": 0.007958539716777333,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 90,
+      "ear": 0.1484292802291434,
+      "mar": 0.00779500807988144,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 91,
+      "ear": 0.15357829328758005,
+      "mar": 0.005511903072688095,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 92,
+      "ear": 0.15120725132166427,
+      "mar": 0.00774180168273302,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 93,
+      "ear": 0.1561664377285228,
+      "mar": 0.004504401653802643,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 94,
+      "ear": 0.15895462669119165,
+      "mar": 0.004566210014386689,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 95,
+      "ear": 0.14858216812883554,
+      "mar": 0.004597701117717004,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 96,
+      "ear": 0.15705644604957963,
+      "mar": 0.007689494608394392,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 97,
+      "ear": 0.148562636612994,
+      "mar": 0.006802563642813232,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 98,
+      "ear": 0.14002657234036092,
+      "mar": 0.006756756711102995,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 99,
+      "ear": 0.15232826838115746,
+      "mar": 0.0,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame": 100,
+      "ear": 0.1301695116137893,
+      "mar": 0.007741264362349483,
+      "fatigue_state": "Severe Fatigue",
+      "perclos": 1.0,
+      "blink_count": 0,
+      "yawn_count": 0
+    }
+  ],
+  "processing_time": "2026-01-20T00:55:09.529624",
+  "confidence": 0.49
+}

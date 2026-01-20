@@ -1,4 +1,7 @@
-# main.py
+"""
+驾驶员疲劳检测系统 - MediaPipe版本
+统一主程序入口，支持命令行和UI两种模式
+"""
 import argparse
 import cv2
 import numpy as np
@@ -14,16 +17,6 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(current_dir)
 if project_root not in sys.path:
     sys.path.append(project_root)
-
-# 导入自定义模块
-from detectors.face_detector import FaceDetector
-from detectors.landmark_detector import LandmarkDetector
-from features.ear_calculator import EARCalculator
-from features.mar_calculator import MARCalculator
-from fatigue.state_tracker import FatigueTracker, FatigueState
-from utils.visualizer import Visualizer
-from config import CONFIG
-
 
 # 全局变量控制报警线程
 alarm_active = False
@@ -52,27 +45,43 @@ def alarm_worker():
 def parse_arguments():
     """解析命令行参数"""
     parser = argparse.ArgumentParser(description='驾驶员疲劳检测系统 - MediaPipe版本')
+    parser.add_argument('--mode', type=str, default='ui', choices=['ui', 'cli'],
+                       help='运行模式: ui(图形界面, 默认) 或 cli(命令行)')
     parser.add_argument('--camera', type=int, default=0, 
-                       help='摄像头设备ID (默认: 0)')
+                       help='摄像头设备ID (默认: 0, 仅在cli模式下有效)')
     parser.add_argument('--video', type=str, default=None,
                        help='视频文件路径 (如果提供，将使用视频文件而不是摄像头)')
-    parser.add_argument('--width', type=int, default=CONFIG['frame']['width'],
+    parser.add_argument('--width', type=int, default=640,
                        help='视频宽度 (默认: 640)')
-    parser.add_argument('--height', type=int, default=CONFIG['frame']['height'],
+    parser.add_argument('--height', type=int, default=480,
                        help='视频高度 (默认: 480)')
     parser.add_argument('--output', type=str, default=None,
-                       help='输出视频文件路径 (可选)')
+                       help='输出视频文件路径 (可选, 仅在cli模式下有效)')
     parser.add_argument('--headless', action='store_true',
-                       help='无界面模式 (用于服务器部署)')
+                       help='无界面模式 (用于服务器部署, 仅在cli模式下有效)')
     parser.add_argument('--confidence', type=float, default=0.5,
                        help='人脸检测置信度阈值 (默认: 0.5)')
     return parser.parse_args()
 
 
-def main():
-    """主函数"""
+def run_cli_mode(args):
+    """运行命令行模式 - 完全保持main1.py的功能"""
     global alarm_active, alarm_thread
-    args = parse_arguments()
+    
+    # 导入自定义模块
+    from detectors.face_detector import FaceDetector
+    from detectors.landmark_detector import LandmarkDetector
+    from features.ear_calculator import EARCalculator
+    from features.mar_calculator import MARCalculator
+    from fatigue.state_tracker import FatigueTracker, FatigueState
+    from utils.visualizer import Visualizer
+    from config import CONFIG
+    
+    # 使用config中的参数（如果用户没有指定）
+    if args.width == 640:
+        args.width = CONFIG['frame']['width']
+    if args.height == 480:
+        args.height = CONFIG['frame']['height']
     
     # 初始化检测器（使用 MediaPipe Tasks API）
     print("初始化 MediaPipe 检测器...")
@@ -176,7 +185,7 @@ def main():
                         # 正常状态：关闭报警
                         alarm_active = False
                     
-                    # 可视化
+                    # 可视化 - 完全保持原来的可视化方式
                     if not args.headless:
                         visualizer.draw_face_bbox_dict(frame, main_face)
                         visualizer.draw_landmarks(frame, landmarks)
@@ -254,5 +263,36 @@ def main():
         print("=" * 50)
 
 
+def run_ui_mode():
+    """运行UI模式"""
+    from PyQt5.QtWidgets import QApplication
+    from UI.UI_main_windows import MainWindow
+    
+    # 创建应用
+    app = QApplication(sys.argv)
+    app.setApplicationName("驾驶员疲劳检测系统 - MediaPipe")
+    app.setApplicationDisplayName("驾驶员疲劳检测系统 - MediaPipe")
+    
+    # 创建主窗口
+    window = MainWindow()
+    window.show()
+    
+    # 运行应用
+    return app.exec_()
+
+
+def main():
+    """主函数"""
+    args = parse_arguments()
+    
+    # 根据模式运行
+    if args.mode == 'ui':
+        print("启动UI模式...")
+        return run_ui_mode()
+    else:
+        print("启动命令行模式...")
+        # 完全保持main1.py的命令行功能
+        run_cli_mode(args)
+
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
