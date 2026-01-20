@@ -1,0 +1,12 @@
+[project]
+name = "group-2-driver-fatigue-detection-system"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13.2"
+dependencies = [
+    "mediapipe>=0.10.31",
+    "numpy>=2.2.6",
+    "opencv-python>=4.12.0.88",
+    "pyinstaller>=6.18.0",
+]

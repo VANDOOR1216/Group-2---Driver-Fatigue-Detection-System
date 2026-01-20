@@ -1,0 +1,28 @@
+# 驾驶员疲劳检测系统 - 依赖包列表
+
+# 核心依赖
+opencv-python>=4.5.0
+mediapipe>=0.10.0
+numpy>=1.19.0
+PyQt5>=5.15.0
+PyQt5-sip>=12.11.0
+pyqtgraph>=0.13.0
+qdarkstyle>=3.0.0
+# 可选依赖（用于性能优化）
+opencv-contrib-python>=4.5.0  # OpenCV扩展模块
+
+# 开发依赖
+pytest>=6.2.0  # 单元测试
+pytest-cov>=2.12.0  # 测试覆盖率
+
+# 注意事项：
+# 1. MediaPipe 安装简单，无需额外编译器
+#    pip install mediapipe
+#
+# 2. 推荐 Python 版本: 3.8 - 3.11
+#
+# 3. MediaPipe 优势：
+#    - 安装简单，无需 CMake
+#    - 性能更好，速度更快
+#    - 支持 GPU 加速
+#    - 无需下载额外模型文件
