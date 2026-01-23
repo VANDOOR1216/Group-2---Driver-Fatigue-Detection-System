@@ -10,14 +10,14 @@ import cv2
 import numpy as np
 import json
 
-from PyQt5.QtWidgets import (
+from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QGroupBox, QLabel, 
     QPushButton, QTextEdit, QFrame, QGridLayout, QProgressBar,
     QFileDialog, QListWidget, QListWidgetItem, QSplitter,
     QMessageBox, QSlider
 )
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, pyqtSlot
-from PyQt5.QtGui import QFont
+from PySide6.QtCore import Qt, QThread, Signal, Slot
+from PySide6.QtGui import QFont
 
 from .UI_styles import COLORS, FONTS
 
@@ -26,10 +26,10 @@ class VideoProcessingWorker(QThread):
     """视频处理工作线程（MediaPipe版本）"""
     
     # 信号定义
-    progress_updated = pyqtSignal(int)    # 进度更新
-    result_ready = pyqtSignal(dict)       # 结果就绪
-    error_occurred = pyqtSignal(str)      # 错误信号
-    finished = pyqtSignal()               # 完成信号
+    progress_updated = Signal(int)    # 进度更新
+    result_ready = Signal(dict)       # 结果就绪
+    error_occurred = Signal(str)      # 错误信号
+    finished = Signal()               # 完成信号
     
     def __init__(self, video_path, confidence=0.5):
         super().__init__()
@@ -455,7 +455,7 @@ class UploadTab(QWidget):
         file_dialog.setFileMode(QFileDialog.ExistingFile)
         file_dialog.setNameFilter("视频文件 (*.mp4 *.avi *.mov *.mkv *.flv *.wmv)")
         
-        if file_dialog.exec_():
+        if file_dialog.exec():
             file_paths = file_dialog.selectedFiles()
             if file_paths:
                 file_path = file_paths[0]
@@ -467,7 +467,7 @@ class UploadTab(QWidget):
         file_dialog.setFileMode(QFileDialog.ExistingFiles)
         file_dialog.setNameFilter("视频文件 (*.mp4 *.avi *.mov *.mkv *.flv *.wmv)")
         
-        if file_dialog.exec_():
+        if file_dialog.exec():
             file_paths = file_dialog.selectedFiles()
             for file_path in file_paths:
                 self.add_video_file(file_path)
@@ -617,12 +617,12 @@ class UploadTab(QWidget):
             
             self.log_message("信息", "处理已停止")
     
-    @pyqtSlot(int)
+    @Slot(int)
     def update_progress(self, progress):
         """更新进度条"""
         self.progress_bar.setValue(progress)
     
-    @pyqtSlot(int)
+    @Slot(int)
     def update_batch_progress(self, progress):
         """更新批量处理的进度条"""
         # 计算总体进度
@@ -631,7 +631,7 @@ class UploadTab(QWidget):
         total_progress = base_progress + current_progress
         self.progress_bar.setValue(int(total_progress))
     
-    @pyqtSlot(dict)
+    @Slot(dict)
     def handle_result(self, result):
         """处理分析结果"""
         try:
@@ -700,7 +700,7 @@ class UploadTab(QWidget):
         except Exception as e:
             self.log_message("错误", f"结果显示失败: {str(e)}")
     
-    @pyqtSlot(dict)
+    @Slot(dict)
     def handle_batch_result(self, result):
         """处理批量分析结果"""
         # 将结果添加到所有结果列表中
@@ -741,7 +741,7 @@ class UploadTab(QWidget):
         except Exception as e:
             self.log_message("错误", f"保存详细结果失败: {str(e)}")
     
-    @pyqtSlot(str)
+    @Slot(str)
     def handle_error(self, error_msg):
         """处理错误"""
         self.log_message("错误", error_msg)
@@ -755,7 +755,7 @@ class UploadTab(QWidget):
         self.confidence_slider.setEnabled(True)
         self.progress_bar.setValue(0)
     
-    @pyqtSlot(str)
+    @Slot(str)
     def handle_batch_error(self, error_msg):
         """处理批量处理错误"""
         self.log_message("错误", f"批量处理错误: {error_msg}")
@@ -764,7 +764,7 @@ class UploadTab(QWidget):
         self.current_batch_index += 1
         self.process_next_video_in_batch()
     
-    @pyqtSlot()
+    @Slot()
     def handle_finished(self):
         """处理完成"""
         # 恢复UI状态
@@ -778,7 +778,7 @@ class UploadTab(QWidget):
         
         self.log_message("信息", "视频处理完成")
     
-    @pyqtSlot()
+    @Slot()
     def handle_batch_finished(self):
         """处理批量完成"""
         # 处理下一个视频
@@ -845,7 +845,7 @@ class UploadTab(QWidget):
             file_dialog.setNameFilter("文本文件 (*.txt);;JSON文件 (*.json);;CSV文件 (*.csv);;所有文件 (*)")
             file_dialog.setDefaultSuffix("txt")
             
-            if file_dialog.exec_():
+            if file_dialog.exec():
                 file_paths = file_dialog.selectedFiles()
                 if file_paths:
                     file_path = file_paths[0]

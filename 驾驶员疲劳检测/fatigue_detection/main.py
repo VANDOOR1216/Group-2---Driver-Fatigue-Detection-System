@@ -265,7 +265,7 @@ def run_cli_mode(args):
 
 def run_ui_mode():
     """运行UI模式"""
-    from PyQt5.QtWidgets import QApplication
+    from PySide6.QtWidgets import QApplication
     from UI.UI_main_windows import MainWindow
     
     # 创建应用
@@ -278,7 +278,7 @@ def run_ui_mode():
     window.show()
     
     # 运行应用
-    return app.exec_()
+    return app.exec()
 
 
 def main():

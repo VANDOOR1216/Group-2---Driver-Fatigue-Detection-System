@@ -1,0 +1,89 @@
+{
+  "start_time": "2026-01-20T20:52:56.228447",
+  "camera_index": 0,
+  "confidence": 0.5,
+  "config": {
+    "frame": {
+      "width": 640,
+      "height": 480,
+      "resize_factor": 1.0
+    },
+    "face_detection": {
+      "min_detection_confidence": 0.5,
+      "model_selection": 0
+    },
+    "landmark_detection": {
+      "static_image_mode": false,
+      "max_num_faces": 1,
+      "min_detection_confidence": 0.5,
+      "min_tracking_confidence": 0.5
+    },
+    "ear": {
+      "threshold": 0.2,
+      "blink_threshold": 0.15,
+      "frame_buffer": 3
+    },
+    "mar": {
+      "threshold": 0.6,
+      "yawn_duration": 10
+    },
+    "fatigue": {
+      "window_size": 150,
+      "perclos_mild": 0.25,
+      "perclos_severe": 0.5,
+      "yawn_threshold": 4,
+      "continuous_blink": 8,
+      "max_closed_frames": 25
+    },
+    "visualization": {
+      "show_landmarks": true,
+      "show_ear": true,
+      "show_mar": true,
+      "show_perclos": true,
+      "colors": {
+        "normal": [
+          0,
+          255,
+          0
+        ],
+        "mild": [
+          0,
+          255,
+          255
+        ],
+        "severe": [
+          0,
+          0,
+          255
+        ],
+        "bbox": [
+          255,
+          0,
+          0
+        ],
+        "landmark": [
+          0,
+          255,
+          255
+        ],
+        "text": [
+          255,
+          255,
+          255
+        ]
+      },
+      "text": {
+        "font": 0,
+        "scale": 0.5,
+        "thickness": 1,
+        "line_type": 16
+      }
+    },
+    "logging": {
+      "enabled": true,
+      "level": "INFO",
+      "file": "fatigue_detection.log"
+    }
+  },
+  "results": []
+}

@@ -6,14 +6,14 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-from PyQt5.QtWidgets import (
+from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QGroupBox, QLabel, 
     QPushButton, QTextEdit, QFrame, QGridLayout, QProgressBar,
     QFileDialog, QListWidget, QListWidgetItem, QSplitter,
     QMessageBox
 )
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, pyqtSlot
-from PyQt5.QtGui import QFont, QIcon
+from PySide6.QtCore import Qt, QThread, Signal, Slot
+from PySide6.QtGui import QFont, QIcon
 
 from .UI_styles import COLORS, FONTS
 
@@ -22,10 +22,10 @@ class VideoProcessingWorker(QThread):
     """视频处理工作线程"""
     
     # 信号定义
-    progress_updated = pyqtSignal(int)    # 进度更新
-    result_ready = pyqtSignal(dict)       # 结果就绪
-    error_occurred = pyqtSignal(str)      # 错误信号
-    finished = pyqtSignal()               # 完成信号
+    progress_updated = Signal(int)    # 进度更新
+    result_ready = Signal(dict)       # 结果就绪
+    error_occurred = Signal(str)      # 错误信号
+    finished = Signal()               # 完成信号
     
     def __init__(self, video_path, model_path):
         super().__init__()
@@ -337,7 +337,7 @@ class UploadTab(QWidget):
         file_dialog.setFileMode(QFileDialog.ExistingFile)
         file_dialog.setNameFilter("视频文件 (*.mp4 *.avi *.mov *.mkv *.flv)")
         
-        if file_dialog.exec_():
+        if file_dialog.exec():
             file_paths = file_dialog.selectedFiles()
             if file_paths:
                 file_path = file_paths[0]
@@ -432,12 +432,12 @@ class UploadTab(QWidget):
             
             self.log_message("信息", "处理已停止")
     
-    @pyqtSlot(int)
+    @Slot(int)
     def update_progress(self, progress):
         """更新进度条"""
         self.progress_bar.setValue(progress)
     
-    @pyqtSlot(dict)
+    @Slot(dict)
     def handle_result(self, result):
         """处理分析结果"""
         try:
@@ -509,7 +509,7 @@ class UploadTab(QWidget):
         except Exception as e:
             self.log_message("错误", f"保存结果失败: {str(e)}")
     
-    @pyqtSlot(str)
+    @Slot(str)
     def handle_error(self, error_msg):
         """处理错误"""
         self.log_message("错误", error_msg)
@@ -520,7 +520,7 @@ class UploadTab(QWidget):
         self.upload_button.setEnabled(True)
         self.progress_bar.setValue(0)
     
-    @pyqtSlot()
+    @Slot()
     def handle_finished(self):
         """处理完成"""
         # 恢复UI状态
@@ -540,7 +540,7 @@ class UploadTab(QWidget):
             file_dialog.setNameFilter("文本文件 (*.txt);;所有文件 (*)")
             file_dialog.setDefaultSuffix("txt")
             
-            if file_dialog.exec_():
+            if file_dialog.exec():
                 file_paths = file_dialog.selectedFiles()
                 if file_paths:
                     file_path = file_paths[0]

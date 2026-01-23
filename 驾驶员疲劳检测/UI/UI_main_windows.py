@@ -6,12 +6,12 @@ import os
 import sys
 from pathlib import Path
 
-from PyQt5.QtWidgets import (
+from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QTabWidget, 
     QStatusBar, QMessageBox, QApplication
 )
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QIcon
 
 from .UI_realtime_tab import RealtimeTab
 from .UI_upload_tab import UploadTab

@@ -2,8 +2,8 @@
 """
 UI样式定义
 """
-from PyQt5.QtGui import QFont, QColor, QPalette
-from PyQt5.QtCore import Qt
+from PySide6.QtGui import QFont, QColor, QPalette
+from PySide6.QtCore import Qt
 
 # 颜色定义
 COLORS = {
@@ -115,6 +115,17 @@ QPushButton#uploadButton:hover {{
     background-color: #d68910;
 }}
 
+/* 单选框和复选框 */
+QRadioButton, QCheckBox {{
+    color: {COLORS['text']};
+    spacing: 5px;
+}}
+
+QRadioButton::indicator, QCheckBox::indicator {{
+    width: 16px;
+    height: 16px;
+}}
+
 /* 标签样式 */
 QLabel {{
     color: {COLORS['text']};
@@ -138,18 +149,39 @@ QLabel#statusLabel {{
 QTextEdit, QPlainTextEdit {{
     background-color: {COLORS['dark']};
     color: {COLORS['text']};
-    border: 1px solid {COLORS['border']};
-    border-radius: 5px;
-    padding: 5px;
-    font-family: Consolas, monospace;
+    border: 1px solid #555;
+    border-radius: 3px;
 }}
 
 QLineEdit {{
     background-color: {COLORS['dark']};
     color: {COLORS['text']};
-    border: 1px solid {COLORS['border']};
-    border-radius: 5px;
+    border: 1px solid #555;
+    border-radius: 3px;
     padding: 5px;
+}}
+
+/* 滑动条样式 */
+QSlider::groove:horizontal {{
+    border: 1px solid #5c5c5c;
+    height: 6px;
+    background: #404244;
+    margin: 2px 0;
+    border-radius: 3px;
+}}
+
+QSlider::handle:horizontal {{
+    background: {COLORS['primary']};
+    border: 1px solid {COLORS['primary']};
+    width: 14px;
+    height: 14px;
+    margin: -4px 0;
+    border-radius: 7px;
+}}
+
+QSlider::sub-page:horizontal {{
+    background: {COLORS['primary']};
+    border-radius: 3px;
 }}
 
 /* 组合框样式 */
@@ -233,6 +265,15 @@ QFrame#videoFrame {{
     border: 2px solid {COLORS['border']};
     border-radius: 5px;
     background-color: black;
+}}
+
+/* 消息框样式 */
+QMessageBox {{
+    background-color: {COLORS['background']};
+}}
+
+QMessageBox QLabel {{
+    color: {COLORS['text']};
 }}
 """
 

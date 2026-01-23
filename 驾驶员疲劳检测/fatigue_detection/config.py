@@ -26,25 +26,25 @@ CONFIG = {
     
     # EAR配置（MediaPipe 的 EAR 值范围可能不同）
     'ear': {
-        'threshold': 0.2,         # EAR阈值（低于此值视为闭眼）
+        'threshold': 0.18,        # EAR阈值（降低阈值以减少正常眨眼或小眼睛的误报，原0.2）
         'blink_threshold': 0.15,  # 眨眼阈值
         'frame_buffer': 3         # 眨眼确认的帧数缓冲
     },
     
     # MAR配置
     'mar': {
-        'threshold': 0.6,         # MAR阈值（高于此值视为打哈欠）
-        'yawn_duration': 10       # 打哈欠持续帧数
+        'threshold': 0.6,         # MAR阈值（提高阈值以避免说话被误判为哈欠，原0.5）
+        'yawn_duration': 5        # 打哈欠持续帧数（原10）
     },
     
     # 疲劳检测配置
     'fatigue': {
         'window_size': 150,       # PERCLOS计算窗口大小（帧数）- 约5秒
-        'perclos_mild': 0.25,     # 轻度疲劳阈值（25%）
+        'perclos_mild': 0.30,     # 轻度疲劳阈值（提高到30%以减少误报，原0.25）
         'perclos_severe': 0.5,    # 重度疲劳阈值（50%）
         'yawn_threshold': 4,      # 打哈欠告警次数
         'continuous_blink': 8,    # 连续眨眼告警次数
-        'max_closed_frames': 25   # 最大连续闭眼帧数（约0.8秒）
+        'max_closed_frames': 30   # 最大连续闭眼帧数（约1秒，原25帧）
     },
     
     # 可视化配置

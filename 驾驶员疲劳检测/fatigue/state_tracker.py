@@ -38,13 +38,17 @@ class FatigueTracker:
         self.last_state = FatigueState.NORMAL
         
         # 统计计数器
-        self.blink_count = 0
-        self.yawn_count = 0
+        self.blink_count = 0  # 近期眨眼频率（用于疲劳判断）
+        self.yawn_count = 0   # 近期哈欠频率（用于疲劳判断）
+        self.total_blink_count = 0  # 总眨眼次数（用于统计显示）
+        self.total_yawn_count = 0   # 总哈欠次数（用于统计显示）
         self.frame_count = 0
         
         # 连续闭眼帧数
         self.consecutive_closed_frames = 0
         self.max_consecutive_closed = 0
+        # 连续睁眼帧数（用于快速恢复）
+        self.consecutive_open_frames = 0
         # 连续打哈欠帧数
         self.consecutive_yawn_frames = 0
         
@@ -126,22 +130,24 @@ class FatigueTracker:
         """更新眨眼状态"""
         if ear < self.ear_threshold:
             self.consecutive_closed_frames += 1
+            self.consecutive_open_frames = 0
             
             # 检测眨眼（从睁眼到闭眼）
             if not self.is_blinking:
-                self.is_blinking = True
-                
-                # 如果闭眼超过一定帧数，计数为有效眨眼
+                # 只有当连续闭眼帧数达到阈值时，才标记为正在眨眼并计数
                 if self.consecutive_closed_frames >= CONFIG['ear']['frame_buffer']:
+                    self.is_blinking = True
                     self.blink_history.append(self.frame_count)
+                    self.total_blink_count += 1
         else:
             self.consecutive_closed_frames = 0
+            self.consecutive_open_frames += 1
             self.is_blinking = False
     
     def _update_yawn_state(self, mar):
         """更新打哈欠状态"""
         # 增加防抖机制：只有连续多帧张嘴才算哈欠
-        yawn_frames_threshold = 5  # 至少连续5帧（约0.15秒）
+        yawn_frames_threshold = CONFIG['mar'].get('yawn_duration', 5)  # 从配置获取
         
         if mar > self.mar_threshold:
             self.consecutive_yawn_frames += 1
@@ -150,6 +156,7 @@ class FatigueTracker:
                 if not self.is_yawning:
                     self.is_yawning = True
                     self.yawn_history.append(self.frame_count)
+                    self.total_yawn_count += 1
         else:
             self.consecutive_yawn_frames = 0
             self.is_yawning = False
@@ -189,10 +196,16 @@ class FatigueTracker:
         
         # 迟滞阈值 (Hysteresis)
         # 防止状态在阈值附近抖动
-        hysteresis = 0.10
+        hysteresis = 0.05  # 降低迟滞阈值，使状态恢复更灵敏 (原0.10)
         
         severe_th = self.perclos_severe
         mild_th = self.perclos_mild
+        
+        # 快速恢复机制：如果连续睁眼超过一定时间（约0.5秒），消除迟滞效应并忽略历史闭眼记录
+        is_recovering = False
+        if self.consecutive_open_frames > 15:
+            hysteresis = 0.0
+            is_recovering = True
         
         # 如果当前是疲劳状态，降低退出的门槛（增加粘性，防止回跳）
         if self.current_state == FatigueState.SEVERE:
@@ -214,8 +227,8 @@ class FatigueTracker:
         if self.blink_count >= self.continuous_blink * (self.window_size / 30):
             return FatigueState.MILD
         
-        # 规则4: 长时间闭眼
-        if self.max_consecutive_closed > self.max_closed_frames_threshold:
+        # 规则4: 长时间闭眼 (如果正在恢复中，则忽略此规则)
+        if not is_recovering and self.max_consecutive_closed > self.max_closed_frames_threshold:
             return FatigueState.SEVERE
         
         return FatigueState.NORMAL
@@ -232,8 +245,10 @@ class FatigueTracker:
             'perclos': perclos,
             'avg_ear': avg_ear,
             'avg_mar': avg_mar,
-            'blink_count': self.blink_count,
-            'yawn_count': self.yawn_count,
+            'blink_count': self.total_blink_count,  # 返回总次数用于显示
+            'yawn_count': self.total_yawn_count,    # 返回总次数用于显示
+            'blink_rate': self.blink_count,         # 返回近期频率用于调试
+            'yawn_rate': self.yawn_count,           # 返回近期频率用于调试
             'frame_count': self.frame_count,
             'consecutive_closed': self.consecutive_closed_frames,
             'max_consecutive_closed': self.max_consecutive_closed,
@@ -247,7 +262,10 @@ class FatigueTracker:
         self.mar_buffer.clear()
         self.blink_count = 0
         self.yawn_count = 0
+        self.total_blink_count = 0
+        self.total_yawn_count = 0
         self.consecutive_closed_frames = 0
+        self.consecutive_open_frames = 0
         self.max_consecutive_closed = 0
         self.current_state = FatigueState.NORMAL
         self.last_state = FatigueState.NORMAL

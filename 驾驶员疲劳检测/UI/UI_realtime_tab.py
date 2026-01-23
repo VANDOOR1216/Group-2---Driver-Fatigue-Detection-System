@@ -7,13 +7,14 @@ from datetime import datetime
 from pathlib import Path
 import cv2
 import numpy as np
-from PyQt5.QtWidgets import (
+from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QGroupBox, QLabel, 
     QPushButton, QTextEdit, QFrame, QGridLayout, QProgressBar,
-    QComboBox, QSpinBox, QCheckBox
+    QComboBox, QSpinBox, QCheckBox, QSizePolicy, 
+    QFileDialog, QRadioButton, QButtonGroup, QLineEdit, QSlider
 )
-from PyQt5.QtCore import Qt, QTimer, pyqtSlot
-from PyQt5.QtGui import QImage, QPixmap, QFont
+from PySide6.QtCore import Qt, QTimer, Slot
+from PySide6.QtGui import QImage, QPixmap, QFont
 
 from .UI_worker import RealtimeDetectionWorker
 from .UI_styles import COLORS, FONTS, STATUS_STYLES
@@ -33,8 +34,10 @@ class RealtimeTab(QWidget):
         self.is_recording = False
         self.alarm_active = False
         
-        # 摄像头设置（固定置信度为0.5）
+        # 摄像头设置
         self.camera_index = 0
+        self.video_file_path = ""
+        self.use_video_file = False
         self.confidence = 0.5  # 固定置信度
         
         # 初始化UI
@@ -65,88 +68,27 @@ class RealtimeTab(QWidget):
         # 视频显示区域
         self.video_frame = QFrame()
         self.video_frame.setObjectName("videoFrame")
-        self.video_frame.setMinimumSize(640, 480)
+        self.video_frame.setMinimumSize(320, 240)  # 减小最小尺寸，防止布局溢出
         
         self.video_label = QLabel()
+        self.video_label.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.video_label.setMinimumSize(1, 1)  # 允许缩小
         self.video_label.setAlignment(Qt.AlignCenter)
         self.video_label.setText("摄像头未开启")
         self.video_label.setStyleSheet(f"color: {COLORS['text']}; font-size: 14px;")
         
         video_layout = QVBoxLayout(self.video_frame)
+        video_layout.setContentsMargins(0, 0, 0, 0) # 移除边距以最大化显示
         video_layout.addWidget(self.video_label)
         
-        main_layout.addWidget(self.video_frame, 1)
+        # 创建水平内容布局 (左侧视频，右侧状态)
+        content_layout = QHBoxLayout()
+        content_layout.addWidget(self.video_frame, 7) # 视频占70%
         
-        # 控制面板
-        control_group = QGroupBox("控制面板")
-        control_layout = QVBoxLayout()
-        
-        # 摄像头设置
-        settings_layout = QHBoxLayout()
-        
-        # 摄像头选择
-        settings_layout.addWidget(QLabel("摄像头:"))
-        self.camera_combo = QComboBox()
-        self.camera_combo.addItem("默认摄像头", 0)
-        self.camera_combo.addItem("摄像头1", 1)
-        self.camera_combo.addItem("摄像头2", 2)
-        settings_layout.addWidget(self.camera_combo)
-        
-        # 固定置信度显示
-        settings_layout.addWidget(QLabel("置信度:"))
-        confidence_label = QLabel("0.5 (固定)")
-        confidence_label.setStyleSheet(f"color: {COLORS['text']}; font-weight: bold;")
-        confidence_label.setMinimumWidth(80)
-        settings_layout.addWidget(confidence_label)
-        
-        settings_layout.addStretch()
-        control_layout.addLayout(settings_layout)
-        
-        # 按钮控制
-        button_layout = QHBoxLayout()
-        
-        # 开始按钮
-        self.start_button = QPushButton("开始检测")
-        self.start_button.setObjectName("startButton")
-        self.start_button.setMinimumHeight(40)
-        self.start_button.setFont(FONTS['subheading'])
-        self.start_button.clicked.connect(self.start_detection)
-        button_layout.addWidget(self.start_button)
-        
-        # 停止按钮
-        self.stop_button = QPushButton("停止检测")
-        self.stop_button.setObjectName("stopButton")
-        self.stop_button.setMinimumHeight(40)
-        self.stop_button.setFont(FONTS['subheading'])
-        self.stop_button.clicked.connect(self.stop_detection)
-        self.stop_button.setEnabled(False)
-        button_layout.addWidget(self.stop_button)
-        
-        # 录制按钮
-        self.record_button = QPushButton("开始录制")
-        self.record_button.setObjectName("recordButton")
-        self.record_button.setMinimumHeight(40)
-        self.record_button.setFont(FONTS['subheading'])
-        self.record_button.clicked.connect(self.toggle_recording)
-        self.record_button.setEnabled(False)
-        button_layout.addWidget(self.record_button)
-        
-        # 重置按钮
-        self.reset_button = QPushButton("重置统计")
-        self.reset_button.setMinimumHeight(40)
-        self.reset_button.setFont(FONTS['subheading'])
-        self.reset_button.clicked.connect(self.reset_statistics)
-        self.reset_button.setEnabled(False)
-        button_layout.addWidget(self.reset_button)
-        
-        button_layout.addStretch()
-        control_layout.addLayout(button_layout)
-        
-        control_group.setLayout(control_layout)
-        main_layout.addWidget(control_group)
-        
-        # 连接信号
-        self.camera_combo.currentIndexChanged.connect(self.update_camera_index)
+        # 右侧面板布局
+        right_panel = QWidget()
+        right_layout = QVBoxLayout(right_panel)
+        right_layout.setContentsMargins(0, 0, 0, 0)
         
         # 状态信息面板
         status_group = QGroupBox("状态信息")
@@ -206,7 +148,7 @@ class RealtimeTab(QWidget):
         status_layout.addWidget(self.face_detect_label, 3, 3)
         
         status_group.setLayout(status_layout)
-        main_layout.addWidget(status_group)
+        right_layout.addWidget(status_group)
         
         # 统计信息面板
         stats_group = QGroupBox("统计信息")
@@ -244,7 +186,144 @@ class RealtimeTab(QWidget):
         stats_layout.addWidget(self.fatigue_progress, 2, 1, 1, 3)
         
         stats_group.setLayout(stats_layout)
-        main_layout.addWidget(stats_group)
+        right_layout.addWidget(stats_group)
+        
+        right_layout.addStretch()
+        content_layout.addWidget(right_panel, 3) # 状态占30%
+        main_layout.addLayout(content_layout, 1)
+        
+        # 控制面板
+        control_group = QGroupBox("控制面板")
+        control_layout = QVBoxLayout()
+        
+        # 视频源选择
+        source_group = QGroupBox("视频源")
+        source_layout = QVBoxLayout()
+        
+        # 单选按钮组
+        self.source_btn_group = QButtonGroup(self)
+        
+        # 摄像头选项
+        self.camera_radio = QRadioButton("摄像头")
+        self.camera_radio.setChecked(True)
+        self.camera_radio.toggled.connect(self.toggle_source_mode)
+        self.source_btn_group.addButton(self.camera_radio)
+        source_layout.addWidget(self.camera_radio)
+        
+        # 摄像头选择下拉框
+        self.camera_combo = QComboBox()
+        self.camera_combo.addItem("默认摄像头", 0)
+        self.camera_combo.addItem("摄像头1", 1)
+        self.camera_combo.addItem("摄像头2", 2)
+        self.camera_combo.currentIndexChanged.connect(self.update_camera_index)
+        source_layout.addWidget(self.camera_combo)
+        
+        # 视频文件选项
+        self.file_radio = QRadioButton("本地视频文件")
+        self.file_radio.toggled.connect(self.toggle_source_mode)
+        self.source_btn_group.addButton(self.file_radio)
+        source_layout.addWidget(self.file_radio)
+        
+        # 文件选择区域 (默认隐藏)
+        self.file_selection_widget = QWidget()
+        file_layout = QHBoxLayout(self.file_selection_widget)
+        file_layout.setContentsMargins(0, 0, 0, 0)
+        
+        self.file_path_input = QLineEdit()
+        self.file_path_input.setPlaceholderText("请选择视频文件...")
+        self.file_path_input.setReadOnly(True)
+        file_layout.addWidget(self.file_path_input)
+        
+        self.browse_btn = QPushButton("浏览")
+        self.browse_btn.clicked.connect(self.browse_video_file)
+        file_layout.addWidget(self.browse_btn)
+        
+        source_layout.addWidget(self.file_selection_widget)
+        self.file_selection_widget.setVisible(False) # 初始隐藏
+        
+        # 播放速度控制 (仅视频文件模式显示)
+        self.speed_widget = QWidget()
+        speed_layout = QHBoxLayout(self.speed_widget)
+        speed_layout.setContentsMargins(0, 0, 0, 0)
+        
+        speed_layout.addWidget(QLabel("播放速度:"))
+        self.speed_slider = QSlider(Qt.Horizontal)
+        self.speed_slider.setRange(1, 30)  # 0.1x - 3.0x
+        self.speed_slider.setValue(10)     # 1.0x
+        self.speed_slider.setSingleStep(1)
+        self.speed_slider.valueChanged.connect(self.update_speed)
+        speed_layout.addWidget(self.speed_slider)
+        
+        self.speed_value_label = QLabel("1.0x")
+        self.speed_value_label.setMinimumWidth(40)
+        self.speed_value_label.setStyleSheet(f"color: {COLORS['text']};")
+        speed_layout.addWidget(self.speed_value_label)
+        
+        source_layout.addWidget(self.speed_widget)
+        self.speed_widget.setVisible(False)
+        
+        source_group.setLayout(source_layout)
+        control_layout.addWidget(source_group)
+
+        # 置信度设置
+        settings_layout = QHBoxLayout()
+        
+        # 固定置信度显示
+        settings_layout.addWidget(QLabel("置信度:"))
+        confidence_label = QLabel("0.5 (固定)")
+        confidence_label.setStyleSheet(f"color: {COLORS['text']}; font-weight: bold;")
+        confidence_label.setMinimumWidth(80)
+        settings_layout.addWidget(confidence_label)
+        
+        settings_layout.addStretch()
+        control_layout.addLayout(settings_layout)
+        
+        # 按钮控制
+        button_layout = QHBoxLayout()
+        
+        # 开始按钮
+        self.start_button = QPushButton("开始检测")
+        self.start_button.setObjectName("startButton")
+        self.start_button.setMinimumHeight(40)
+        self.start_button.setFont(FONTS['subheading'])
+        self.start_button.clicked.connect(self.start_detection)
+        button_layout.addWidget(self.start_button)
+        
+        # 停止按钮
+        self.stop_button = QPushButton("停止检测")
+        self.stop_button.setObjectName("stopButton")
+        self.stop_button.setMinimumHeight(40)
+        self.stop_button.setFont(FONTS['subheading'])
+        self.stop_button.clicked.connect(self.stop_detection)
+        self.stop_button.setEnabled(False)
+        button_layout.addWidget(self.stop_button)
+        
+        # 录制按钮
+        self.record_button = QPushButton("开始录制")
+        self.record_button.setObjectName("recordButton")
+        self.record_button.setMinimumHeight(40)
+        self.record_button.setFont(FONTS['subheading'])
+        self.record_button.clicked.connect(self.toggle_recording)
+        self.record_button.setEnabled(False)
+        button_layout.addWidget(self.record_button)
+        
+        # 重置按钮
+        self.reset_button = QPushButton("重置统计")
+        self.reset_button.setMinimumHeight(40)
+        self.reset_button.setFont(FONTS['subheading'])
+        self.reset_button.clicked.connect(self.reset_statistics)
+        self.reset_button.setEnabled(False)
+        button_layout.addWidget(self.reset_button)
+        
+        button_layout.addStretch()
+        control_layout.addLayout(button_layout)
+        
+        control_group.setLayout(control_layout)
+        main_layout.addWidget(control_group)
+        
+        # 连接信号
+        # self.camera_combo.currentIndexChanged.connect(self.update_camera_index) # 已在上面连接
+        
         
         # 日志输出
         log_group = QGroupBox("日志输出")
@@ -275,12 +354,45 @@ class RealtimeTab(QWidget):
         if self.camera_index is None:
             self.camera_index = 0
     
+    def toggle_source_mode(self):
+        """切换视频源模式"""
+        is_file_mode = self.file_radio.isChecked()
+        self.use_video_file = is_file_mode
+        
+        # 切换控件可见性
+        self.camera_combo.setVisible(not is_file_mode)
+        self.file_selection_widget.setVisible(is_file_mode)
+        self.speed_widget.setVisible(is_file_mode)
+        
+    def update_speed(self, value):
+        """更新播放速度"""
+        speed = value / 10.0
+        self.speed_value_label.setText(f"{speed:.1f}x")
+        if self.worker and self.is_detecting:
+            self.worker.set_speed(speed)
+
+    def browse_video_file(self):
+        """浏览视频文件"""
+        file_path, _ = QFileDialog.getOpenFileName(
+            self, "选择视频文件", "", "Video Files (*.mp4 *.avi *.mkv *.mov)"
+        )
+        if file_path:
+            self.video_file_path = file_path
+            self.file_path_input.setText(os.path.basename(file_path))
+
     def start_detection(self):
         """开始检测"""
-        # 获取当前设置
-        camera_index = self.camera_index
+        # 如果正在检测，则不执行
+        if self.is_detecting:
+            return
+            
+        # 检查文件模式下是否选择了文件
+        if self.use_video_file and not self.video_file_path:
+            # 这里简单处理，如果没有选择文件，就不启动
+            self.video_label.setText("请先选择视频文件")
+            return
         
-        # 初始化工作线程，使用固定置信度0.5
+        # 初始化工作线程
         self.worker = RealtimeDetectionWorker()
         
         # 连接信号
@@ -290,11 +402,19 @@ class RealtimeTab(QWidget):
         self.worker.recording_started.connect(self.handle_recording_started)
         self.worker.recording_stopped.connect(self.handle_recording_stopped)
         self.worker.alarm_triggered.connect(self.handle_alarm_triggered)
+        self.worker.video_finished.connect(self.stop_detection)
         
-        # 初始化检测器，使用固定置信度0.5
-        if not self.worker.initialize(camera_index=camera_index, confidence=0.5):
+        # 根据模式传递参数：如果是文件模式，传递路径字符串；如果是摄像头模式，传递索引整数
+        source = self.video_file_path if self.use_video_file else self.camera_index
+        
+        # 初始化检测器
+        if not self.worker.initialize(camera_index=source, confidence=self.confidence):
             self.log_message("错误", "检测器初始化失败")
             return
+        
+        # 设置初始速度
+        if self.use_video_file:
+            self.update_speed(self.speed_slider.value())
         
         # 开始检测
         self.worker.start_detection()
@@ -306,30 +426,50 @@ class RealtimeTab(QWidget):
         self.stop_button.setEnabled(True)
         self.record_button.setEnabled(True)
         self.reset_button.setEnabled(True)
-        self.camera_combo.setEnabled(False)
         
-        self.log_message("信息", f"开始实时疲劳检测 (摄像头: {camera_index}, 置信度: 0.5)")
+        # 禁用设置控件
+        self.camera_combo.setEnabled(False)
+        self.camera_radio.setEnabled(False)
+        self.file_radio.setEnabled(False)
+        self.browse_btn.setEnabled(False)
+        
+        self.log_message("信息", f"开始实时疲劳检测 (源: {source}, 置信度: {self.confidence})")
     
     def stop_detection(self):
         """停止检测"""
         if not self.worker or not self.is_detecting:
             return
         
+        # 提前更新标志位，防止后续信号处理
+        self.is_detecting = False
+        self.is_recording = False
+        self.alarm_active = False
+        
+        # 断开信号连接，确保不会再有画面更新
+        try:
+            self.worker.frame_ready.disconnect(self.update_video_frame)
+            self.worker.status_updated.disconnect(self.update_status)
+        except Exception:
+            pass
+        
         # 停止工作线程
         self.worker.stop_detection()
         self.worker = None
         
         # 更新UI状态
-        self.is_detecting = False
-        self.is_recording = False
-        self.alarm_active = False
         self.start_button.setEnabled(True)
         self.stop_button.setEnabled(False)
         self.record_button.setEnabled(False)
         self.record_button.setText("开始录制")
+        
+        # 启用设置控件
         self.camera_combo.setEnabled(True)
+        self.camera_radio.setEnabled(True)
+        self.file_radio.setEnabled(True)
+        self.browse_btn.setEnabled(True)
         
         # 清空视频显示
+        self.video_label.clear()  # 先清除Pixmap
         self.video_label.setText("检测已停止")
         
         # 更新报警状态
@@ -354,9 +494,12 @@ class RealtimeTab(QWidget):
             self.worker.fatigue_tracker.reset()
             self.log_message("信息", "统计信息已重置")
     
-    @pyqtSlot(np.ndarray)
+    @Slot(np.ndarray)
     def update_video_frame(self, frame):
         """更新视频帧显示"""
+        if not self.is_detecting:
+            return
+
         try:
             # 转换图像格式 (BGR -> RGB)
             rgb_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -370,8 +513,14 @@ class RealtimeTab(QWidget):
             
             # 创建QPixmap并显示
             pixmap = QPixmap.fromImage(qt_image)
+            
+            # 使用video_label的当前大小进行缩放，确保不超出范围
+            target_size = self.video_label.size()
+            if target_size.width() < 1 or target_size.height() < 1:
+                target_size = self.video_frame.size()
+                
             scaled_pixmap = pixmap.scaled(
-                self.video_label.size(), 
+                target_size, 
                 Qt.KeepAspectRatio, 
                 Qt.SmoothTransformation
             )
@@ -381,7 +530,7 @@ class RealtimeTab(QWidget):
         except Exception as e:
             print(f"更新视频帧错误: {e}")
     
-    @pyqtSlot(dict)
+    @Slot(dict)
     def update_status(self, status):
         """更新状态信息"""
         # 疲劳状态
@@ -418,21 +567,18 @@ class RealtimeTab(QWidget):
         face_detected = status.get('face_detected', False)
         self.face_detect_label.setText("已检测" if face_detected else "未检测")
         
-        # 更新疲劳进度条
-        fatigue_value = 0
-        if fatigue_state == '轻度疲劳':
-            fatigue_value = 50
-        elif fatigue_state == '重度疲劳':
-            fatigue_value = 100
-        
+        # 更新疲劳进度条 (基于PERCLOS值映射: 0.0-0.5 -> 0-100%)
+        # 0.25 (25%) 为轻度疲劳阈值 -> 对应进度条 50%
+        # 0.50 (50%) 为重度疲劳阈值 -> 对应进度条 100%
+        fatigue_value = min(100, int(perclos * 200))
         self.fatigue_progress.setValue(fatigue_value)
         
         # 设置进度条颜色
-        if fatigue_value < 30:
+        if fatigue_value < 50:  # < 0.25 PERCLOS (正常)
             color = COLORS['normal']
-        elif fatigue_value < 70:
+        elif fatigue_value < 100: # 0.25 - 0.5 PERCLOS (轻度)
             color = COLORS['mild']
-        else:
+        else: # >= 0.5 PERCLOS (重度)
             color = COLORS['severe']
         
         self.fatigue_progress.setStyleSheet(f"""
@@ -470,7 +616,7 @@ class RealtimeTab(QWidget):
         else:
             self.recording_label.setText("未录制")
     
-    @pyqtSlot(bool)
+    @Slot(bool)
     def handle_alarm_triggered(self, active):
         """处理报警触发"""
         self.alarm_active = active
@@ -483,12 +629,12 @@ class RealtimeTab(QWidget):
             self.alarm_label.setText("正常")
             self.alarm_label.setStyleSheet(f"background-color: {COLORS['normal']}; color: white; padding: 2px 6px; border-radius: 3px;")
     
-    @pyqtSlot(str)
+    @Slot(str)
     def handle_error(self, error_msg):
         """处理错误"""
         self.log_message("错误", error_msg)
     
-    @pyqtSlot(str)
+    @Slot(str)
     def handle_recording_started(self, file_path):
         """处理录制开始"""
         self.is_recording = True
@@ -505,7 +651,7 @@ class RealtimeTab(QWidget):
         
         self.log_message("信息", f"开始录制: {Path(file_path).name}")
     
-    @pyqtSlot(str)
+    @Slot(str)
     def handle_recording_stopped(self, message):
         """处理录制停止"""
         self.is_recording = False
@@ -529,6 +675,9 @@ class RealtimeTab(QWidget):
         """窗口关闭事件"""
         if self.worker and self.is_detecting:
             self.stop_detection()
+        
+        self.update_timer.stop()
+        super().closeEvent(event)
         
         self.update_timer.stop()
         super().closeEvent(event)

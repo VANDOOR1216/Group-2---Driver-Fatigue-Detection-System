@@ -1,0 +1,493 @@
+{
+  "start_time": "2026-01-21T19:23:54.965328",
+  "camera_index": "C:/Users/VAN DOOR/Desktop/Group 2 - Driver Fatigue Detection System/data/uploads/0.mp4",
+  "confidence": 0.5,
+  "config": {
+    "frame": {
+      "width": 640,
+      "height": 480,
+      "resize_factor": 1.0
+    },
+    "face_detection": {
+      "min_detection_confidence": 0.5,
+      "model_selection": 0
+    },
+    "landmark_detection": {
+      "static_image_mode": false,
+      "max_num_faces": 1,
+      "min_detection_confidence": 0.5,
+      "min_tracking_confidence": 0.5
+    },
+    "ear": {
+      "threshold": 0.18,
+      "blink_threshold": 0.15,
+      "frame_buffer": 3
+    },
+    "mar": {
+      "threshold": 0.6,
+      "yawn_duration": 5
+    },
+    "fatigue": {
+      "window_size": 150,
+      "perclos_mild": 0.3,
+      "perclos_severe": 0.5,
+      "yawn_threshold": 4,
+      "continuous_blink": 8,
+      "max_closed_frames": 30
+    },
+    "visualization": {
+      "show_landmarks": true,
+      "show_ear": true,
+      "show_mar": true,
+      "show_perclos": true,
+      "colors": {
+        "normal": [
+          0,
+          255,
+          0
+        ],
+        "mild": [
+          0,
+          255,
+          255
+        ],
+        "severe": [
+          0,
+          0,
+          255
+        ],
+        "bbox": [
+          255,
+          0,
+          0
+        ],
+        "landmark": [
+          0,
+          255,
+          255
+        ],
+        "text": [
+          255,
+          255,
+          255
+        ]
+      },
+      "text": {
+        "font": 0,
+        "scale": 0.5,
+        "thickness": 1,
+        "line_type": 16
+      }
+    },
+    "logging": {
+      "enabled": true,
+      "level": "INFO",
+      "file": "fatigue_detection.log"
+    }
+  },
+  "results": [
+    {
+      "frame_count": 0,
+      "timestamp": 1768994634.9822767,
+      "fatigue_state": "Normal",
+      "ear": 0.3445200187362177,
+      "mar": 0.0,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 1,
+      "timestamp": 1768994635.0461922,
+      "fatigue_state": "Normal",
+      "ear": 0.35304743657126025,
+      "mar": 0.0062893080574344395,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 2,
+      "timestamp": 1768994635.110237,
+      "fatigue_state": "Normal",
+      "ear": 0.33035186696449603,
+      "mar": 0.0062893080574344395,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 3,
+      "timestamp": 1768994635.1722627,
+      "fatigue_state": "Normal",
+      "ear": 0.32916599956606374,
+      "mar": 0.00889442475276617,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 4,
+      "timestamp": 1768994635.2330966,
+      "fatigue_state": "Normal",
+      "ear": 0.33041130993385187,
+      "mar": 0.006288188863913915,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 5,
+      "timestamp": 1768994635.2944438,
+      "fatigue_state": "Normal",
+      "ear": 0.3449005243623534,
+      "mar": 0.006172839391860999,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 6,
+      "timestamp": 1768994635.3562522,
+      "fatigue_state": "Normal",
+      "ear": 0.31707108807573725,
+      "mar": 0.006060605950413225,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 7,
+      "timestamp": 1768994635.4175117,
+      "fatigue_state": "Normal",
+      "ear": 0.3169268727723089,
+      "mar": 0.0,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 8,
+      "timestamp": 1768994635.4788551,
+      "fatigue_state": "Normal",
+      "ear": 0.33699131026063167,
+      "mar": 0.0,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 9,
+      "timestamp": 1768994635.5397937,
+      "fatigue_state": "Normal",
+      "ear": 0.3296705962865183,
+      "mar": 0.006171781221067664,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 10,
+      "timestamp": 1768994635.6056669,
+      "fatigue_state": "Normal",
+      "ear": 0.3737959795396778,
+      "mar": 0.012345678783721998,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 11,
+      "timestamp": 1768994635.6671126,
+      "fatigue_state": "Normal",
+      "ear": 0.3679491129705549,
+      "mar": 0.012345678783721998,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 12,
+      "timestamp": 1768994635.7285686,
+      "fatigue_state": "Normal",
+      "ear": 0.36512744370796824,
+      "mar": 0.006172839391860999,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 13,
+      "timestamp": 1768994635.7905588,
+      "fatigue_state": "Normal",
+      "ear": 0.35874322324170504,
+      "mar": 0.0062893080574344395,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 14,
+      "timestamp": 1768994635.852,
+      "fatigue_state": "Normal",
+      "ear": 0.35874322324170504,
+      "mar": 0.0062893080574344395,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 15,
+      "timestamp": 1768994635.9143803,
+      "fatigue_state": "Normal",
+      "ear": 0.35874322324170504,
+      "mar": 0.0062893080574344395,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 16,
+      "timestamp": 1768994635.9754937,
+      "fatigue_state": "Normal",
+      "ear": 0.36056432147969747,
+      "mar": 0.0,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 17,
+      "timestamp": 1768994636.0371804,
+      "fatigue_state": "Normal",
+      "ear": 0.35952244065070293,
+      "mar": 0.0,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 18,
+      "timestamp": 1768994636.0986626,
+      "fatigue_state": "Normal",
+      "ear": 0.346783281736767,
+      "mar": 0.0,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 19,
+      "timestamp": 1768994636.1603034,
+      "fatigue_state": "Normal",
+      "ear": 0.36476020283954275,
+      "mar": 0.0,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 20,
+      "timestamp": 1768994636.223272,
+      "fatigue_state": "Normal",
+      "ear": 0.30698111183643806,
+      "mar": 0.0062893080574344395,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 21,
+      "timestamp": 1768994636.284376,
+      "fatigue_state": "Normal",
+      "ear": 0.3067923377014297,
+      "mar": 0.0,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 22,
+      "timestamp": 1768994636.3462179,
+      "fatigue_state": "Normal",
+      "ear": 0.32263434554655596,
+      "mar": 0.00889442475276617,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 23,
+      "timestamp": 1768994636.4076087,
+      "fatigue_state": "Normal",
+      "ear": 0.32263434554655596,
+      "mar": 0.01257637772782783,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 24,
+      "timestamp": 1768994636.4691901,
+      "fatigue_state": "Normal",
+      "ear": 0.3165973002151078,
+      "mar": 0.012578616114868879,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 25,
+      "timestamp": 1768994636.5311923,
+      "fatigue_state": "Normal",
+      "ear": 0.32862871545752376,
+      "mar": 0.0,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 26,
+      "timestamp": 1768994636.593021,
+      "fatigue_state": "Normal",
+      "ear": 0.3309990344986359,
+      "mar": 0.0,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    },
+    {
+      "frame_count": 27,
+      "timestamp": 1768994636.6546688,
+      "fatigue_state": "Normal",
+      "ear": 0.3451811888365761,
+      "mar": 0.0062893080574344395,
+      "perclos": 0.0,
+      "fps": 0,
+      "recording": false,
+      "face_detected": true,
+      "alarm_active": false,
+      "blink_count": 0,
+      "yawn_count": 0
+    }
+  ],
+  "end_time": "2026-01-21T19:23:56.718349",
+  "total_frames": 28,
+  "statistics": {
+    "normal_count": 28,
+    "mild_count": 0,
+    "severe_count": 0,
+    "total_fatigue_frames": 0,
+    "avg_fps": NaN,
+    "avg_ear": 0.34029420913636743,
+    "avg_mar": 0.00791814511871283
+  }
+}

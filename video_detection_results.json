@@ -1,0 +1,26 @@
+[
+  {
+    "video_name": "recording_20260120_004939.mp4",
+    "final_fatigue_level": "正常",
+    "processing_time": "2026-01-21T14:37:12.615978",
+    "total_frames": 355,
+    "processed_frames": 355,
+    "fatigue_percentage": 0.0
+  },
+  {
+    "video_name": "recording_20260119_214200.mp4",
+    "final_fatigue_level": "正常",
+    "processing_time": "2026-01-21T17:57:31.496128",
+    "total_frames": 150,
+    "processed_frames": 150,
+    "fatigue_percentage": 0.0
+  },
+  {
+    "video_name": "recording_20260119_214200.mp4",
+    "final_fatigue_level": "正常",
+    "processing_time": "2026-01-21T18:14:12.293996",
+    "total_frames": 150,
+    "processed_frames": 150,
+    "fatigue_percentage": 0.0
+  }
+]

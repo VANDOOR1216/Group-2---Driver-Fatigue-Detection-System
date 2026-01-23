@@ -30,4 +30,17 @@ def get_model_path(model_name):
         str: 模型文件的完整路径
     """
     base_path = get_base_path()
-    return os.path.join(base_path, 'models', model_name)
+    model_path = os.path.join(base_path, 'models', model_name)
+    
+    # 调试信息
+    if not os.path.exists(model_path):
+        print(f"警告: 模型文件不存在: {model_path}")
+        print(f"基础路径: {base_path}")
+        # 尝试列出 models 目录内容
+        models_dir = os.path.join(base_path, 'models')
+        if os.path.exists(models_dir):
+            print(f"models 目录内容: {os.listdir(models_dir)}")
+        else:
+            print(f"models 目录不存在: {models_dir}")
+            
+    return model_path
